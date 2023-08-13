@@ -1,29 +1,25 @@
-import dotenv from 'dotenv'
-// require('dotenv').config();
-const env = process.env;
+import dotenv from 'dotenv';
+import Sequelize from 'sequelize';
+import { User } from '../models/User.js';
 
-const development = {
-  username: env.MYSQL_USERNAME,
-  password: env.MYSQL_PASSWORD,
-  database: env.MYSQL_DATABASE,
-  host: env.MYSQL_HOST,
-  dialect: "mysql",
-};
+dotenv.config();  // .env 파일의 환경 변수 로드
 
-const production = {
-  username: env.MYSQL_USERNAME,
-  password: env.MYSQL_PASSWORD,
-  database: env.MYSQL_DATABASE,
-  host: env.MYSQL_HOST,
-  dialect: "mysql",
-};
+const dbHost = process.env.MYSQL_HOST;
+const dbUser = process.env.MYSQL_USERNAME;
+const dbPass = process.env.MYSQL_PASSWORD;
+const dbName = process.env.MYSQL_DATABASE;
 
-const test = {
-  username: env.MYSQL_USERNAME,
-  password: env.MYSQL_PASSWORD,
-  database: env.MYSQL_DATABASE_TEST,
-  host: env.MYSQL_HOST,
-  dialect: "mysql",
-};
+const sequelize = new Sequelize(dbName, dbUser, dbPass, {
+  host: dbHost,
+  dialect: 'mysql',
+});
 
-export default { development, production, test };
+const db = {};
+
+// 모델들 import 및 정의
+db.User = User(sequelize, Sequelize);
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+export default db;
