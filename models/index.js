@@ -1,16 +1,23 @@
-'use strict';
+import Sequelize from 'sequelize';
+import config from '../config/config.js'; // 또는 설정 파일의 경로로 변경해주세요
 
-const Sequelize = require('sequelize');
-const config = require(__dirname + '/../config/config.json')['development'];
+const env = process.env.NODE_ENV || 'development';
+const dbConfig = config[env];
+
+const sequelize = new Sequelize(
+  dbConfig.database,
+  dbConfig.username,
+  dbConfig.password, {
+    host: dbConfig.host,
+    dialect: dbConfig.dialect
+  }
+);
+
 const db = {};
 
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
-
-// model 가져오는 코드
-
-// 관계 선언
+// 모델들 import 및 정의
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = db;
+export default db;
