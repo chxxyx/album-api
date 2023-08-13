@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import Sequelize from 'sequelize';
 import { User } from '../models/User.js';
 import { Photo } from '../models/Photo.js';
+import { Album } from '../models/Album.js';
 
 dotenv.config();  // .env 파일의 환경 변수 로드
 
@@ -20,6 +21,7 @@ const db = {};
 // 모델들 import 및 정의
 db.User = User(sequelize, Sequelize);
 db.Photo = Photo(sequelize, Sequelize);
+db.Album = Album(sequelize, Sequelize);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
