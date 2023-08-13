@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 
+// sequelize 객체를 인자로 받아서 DB와 연결된 User 모델을 정의하고 반환
 const userModel = (sequelize) => {
 
     const User = sequelize.define('user', {
@@ -27,5 +28,5 @@ const userModel = (sequelize) => {
 }
 
 export {
-    userModel as User,
+    userModel as User, // userModel 함수를 'User'라는 이름으로 내보내기 위함
 };

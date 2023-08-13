@@ -11,6 +11,7 @@ const dbUser = process.env.MYSQL_USERNAME;
 const dbPass = process.env.MYSQL_PASSWORD;
 const dbName = process.env.MYSQL_DATABASE;
 
+// sequelize 객체 생성
 const sequelize = new Sequelize(dbName, dbUser, dbPass, {
   host: dbHost,
   dialect: 'mysql',
@@ -18,8 +19,8 @@ const sequelize = new Sequelize(dbName, dbUser, dbPass, {
 
 const db = {};
 
-// 모델들 import 및 정의
-db.User = User(sequelize, Sequelize);
+// User, Photo, Album 모델을 Sequelize 객체와 연결하여 DB 생성, 관리
+db.User = User(sequelize, Sequelize); 
 db.Photo = Photo(sequelize, Sequelize);
 db.Album = Album(sequelize, Sequelize);
 
