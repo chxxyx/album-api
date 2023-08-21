@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 import Sequelize from 'sequelize';
-import { User } from '../models/User.js';
-import { Photo } from '../models/Photo.js';
-import { Album } from '../models/Album.js';
+import { User } from './models/User.js';
+import { Photo } from './models/Photo.js';
+import { Album } from './models/Album.js';
 
 dotenv.config();  // .env 파일의 환경 변수 로드
 
